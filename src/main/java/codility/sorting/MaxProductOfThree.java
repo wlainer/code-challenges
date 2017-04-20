@@ -10,25 +10,17 @@ public class MaxProductOfThree {
 	public int solution(int[] A) {
 		Arrays.sort(A);
 		
-		int distinct = 0;
-		for (int i = 1; i < A.length-1; i++) 
-			if (A[i] == A[i-1]) distinct++;
-
-		return A.length - distinct;
+		int max1 = A[A.length-3] * A[A.length-2] * A[A.length-1];
+		int max2 = A[0] * A[1] * A[A.length-1];
 		
+		return Math.max(max1, max2);
 	}
 
 	@Test
 	public void test() {
-		int[] A = new int[] { 2, 1, 1, 2, 3, 1 };
-		Assert.assertEquals(solution(A), 3);
+		int[] A = new int[] { -3, 1, 2, -2, 5, 6 };
+		Assert.assertEquals(solution(A), 60);
 		
-		A = new int[] {1,1,1,1,1,1};
-		Assert.assertEquals(solution(A), 1);
-		
-		A = new int[] {};
-		Assert.assertEquals(solution(A), 0);
-
 	}
 
 }
