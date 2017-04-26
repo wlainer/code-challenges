@@ -22,7 +22,8 @@ public class Others {
 //		System.out.println(rotate2Numbers(8093));
 //		System.out.println(swap2Numbers(9857));
 //		readCharAtTime();
-		logFile();
+		int k = 4;
+		logFile(4);
 	}
 
 	public static void replaceSpaces(char[] str, int length) {
@@ -131,12 +132,13 @@ public class Others {
 		}
 	}
 	
-	public static void logFile() {
+	public static void logFile(int j) {
 		try {
 			BufferedReader bReader = new BufferedReader(new InputStreamReader(new FileInputStream("d:/example.txt"), Charset.forName("UTF-8")));
 			
-			String pattern = "line4";
-			String[] cache = new String[] { "\0","\0","\0"};
+			String pattern = "line13";
+			String[] cache = new String[j];
+			int pos = 0;
 			
 			
 			String line = null;
@@ -146,29 +148,18 @@ public class Others {
 				if (matcher.find())	
 					break;
 				
-				cache = addLine(cache, line);
+				cache[pos % j] = line;
+				pos++;
 			}
 			
 			bReader.close();
 
-			for (int i = cache.length -1; i >= 0; i--) {
-				System.out.println(cache[i]);
+			for (int i = pos; i < j + pos; i++) {
+				System.out.println(cache[i % j]);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private static String[] addLine(String[] array, String line) {
-		
-		String[] toReturn = new String[array.length];
-		
-		toReturn[0] = line;
-		for (int i = 1; i < array.length; i++) {
-			toReturn[i] = array[i-1];
-		}
-		
-		return toReturn;
 	}
 
 }
