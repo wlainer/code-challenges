@@ -15,6 +15,7 @@ import org.junit.Before;
 public class TestBase implements TestInterface {
 
 	private ByteArrayOutputStream baos;
+	private PrintStream oldOut;
 
 	@Before
 	public void setup() {
@@ -37,9 +38,14 @@ public class TestBase implements TestInterface {
 	}
 
 	protected void configureSystemOut() {
+		oldOut = System.out;
 		baos = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(baos);
 		System.setOut(ps);
+	}
+	
+	protected void restoreOldOut() {
+		System.setOut(oldOut);
 	}
 
 	protected String[] getLines() {
