@@ -2,6 +2,7 @@ package challenge.hackerrank.amazon;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +28,9 @@ public class DonutMapper {
 		};
 
 		String[][] matchDonuts = matchDonuts(donut, person);
+		String[][] matchDonuts2 = matchDonuts2(donut, person);
+
+		System.out.println();
 	}
 
 	static String[][] matchDonuts(String[][] donutConstraintPairs, String[][] candidateConstraintPairs) {
@@ -93,6 +97,34 @@ public class DonutMapper {
 		}
 			
 		return toReturn;
+	}
+
+	static String[][] matchDonuts2(String[][] donutConstraintPairs, String[][] candidateConstraintPairs) {
+		Map<String, String> donuts = new HashMap();
+
+		for (int i = 0; i < donutConstraintPairs.length; i++)
+			donuts.put(donutConstraintPairs[i][1], donutConstraintPairs[i][0]);
+
+		List<String[]> res = new ArrayList();
+
+		for (int i = 0; i < candidateConstraintPairs.length; i++)
+			if (candidateConstraintPairs[i][1] != "*")
+				res.add(new String[] { candidateConstraintPairs[i][0], donuts.get(candidateConstraintPairs[i][1]) });
+			else
+				associateWithAll(candidateConstraintPairs[i][0], donuts, res);
+
+
+		String[][] a = new String[res.size()][];
+		res.toArray(a);
+		return a;
+
+	}
+
+	static void associateWithAll(String person, Map<String, String> donuts, List<String[]> res) {
+		Set<String> keySet = donuts.keySet();
+		for (String key : keySet)
+			res.add(new String[] { person, donuts.get(key) });
+
 	}
 
 }
