@@ -34,17 +34,17 @@ public class TestBase implements TestInterface {
 		return "Hello";
 	}
 	
-	protected static String getTestFile() {
-		String canonicalName = Thread.currentThread().getStackTrace()[3].getClassName();
-		String filepath = "/" + canonicalName.replace('.', '/');
-		return filepath;
-	}
-
 	protected static Scanner getScanner() {
 		String testFile = getTestFile() + "_" + inputFile + "_in.txt";
 		createIfNotExits(testFile);
 
 		return new Scanner(getTestFileInputStream(testFile));
+	}
+
+	protected static String getTestFile() {
+		String canonicalName = Thread.currentThread().getStackTrace()[3].getClassName();
+		String filepath = "/" + canonicalName.replace('.', '/');
+		return filepath;
 	}
 
 	private static InputStream getTestFileInputStream(String file) {
@@ -57,8 +57,10 @@ public class TestBase implements TestInterface {
 			String absolutePath = projectLocation.getAbsolutePath().replace('\\', '/') + "/src/main/resources" + testFile;
 
 			File file = new File(absolutePath);
-			if (!file.exists())
+			if (!file.exists()) {
+				file.getParentFile().mkdirs();
 				file.createNewFile();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

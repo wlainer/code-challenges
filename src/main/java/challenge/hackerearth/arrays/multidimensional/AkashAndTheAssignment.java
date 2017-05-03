@@ -19,7 +19,7 @@ public class AkashAndTheAssignment extends TestBase {
 	public void test() {
 		solution();
 
-		// checkLines();
+		checkLines();
 		
 	}
 }
