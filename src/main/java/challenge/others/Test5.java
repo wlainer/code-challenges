@@ -1,21 +1,16 @@
 package challenge.others;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import challenge.TestInterface;
-
-public class Test5 implements TestInterface {
+public class Test5  {
 
 	public static void main(String[] args) {
 		Test5 test3 = new Test5();
 		test3.run();
 	}
 
-	@Override
 	public Object run() {
 		Test5 test5 = new Test5();
 

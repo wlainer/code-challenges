@@ -1,4 +1,4 @@
-package challenge.hackerrank.algorithms;
+package challenge.hackerrank.algorithms.graphtheory;
 
 import java.util.Scanner;
 import java.util.Vector;
@@ -8,13 +8,18 @@ import org.junit.Test;
 import challenge.TestBase;
 
 public class RoadsAndLibraries extends TestBase {
+	
+	@Override
+	protected String getIndexTestCase() {
+		return "01";
+	}
 
 	public void solution() {
 		Scanner s = getScanner();
 
 		int N = s.nextInt();
 
-		for (; N >= 0; N--) {
+		for (; N > 0; N--) {
 			int nodes = s.nextInt();
 			int edges = s.nextInt();
 
@@ -36,27 +41,32 @@ public class RoadsAndLibraries extends TestBase {
 			}
 
 			int distinct = 0;
-			int sum = 0;
+			int sumRoads = 0;
 			for (int i = 1; i <= nodes; i++) {
+				int sum = 0;
 				if (visited[i] == false) {
-					dfs(visited, adj, i, sum);
+					sumRoads += dfs(visited, adj, i, sum);
 					distinct++;
 				}
 			}
-			System.out.println();
+			
+			if (distinct * costLibrary + sumRoads * costRoad < nodes * costLibrary) {
+				System.out.println(distinct * costLibrary + sumRoads * costRoad);
+			} else {
+				System.out.println(nodes * costLibrary);
+			}
 		}
 	}
 
 	private int dfs(boolean[] visited, Vector<Integer>[] adj, int s, int sum) {
-		if (sum == 0)
-			sum = 1;
-
 		visited[s] = true;
+		
 		for (int i = 0; i < adj[s].size(); i++) {
 			if (visited[adj[s].get(i)] == false) {
-				return sum + 1 + dfs(visited, adj, adj[s].get(i), sum);
+				sum++;
+				sum = dfs(visited, adj, adj[s].get(i), sum);
 			}
-
+			
 		}
 		return sum;
 	 }
@@ -66,6 +76,5 @@ public class RoadsAndLibraries extends TestBase {
 		solution();
 		
 		checkLines();
-
 	}
 }

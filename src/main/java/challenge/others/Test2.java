@@ -1,14 +1,9 @@
 package challenge.others;
 
 import java.util.BitSet;
-import java.util.HashSet;
-import java.util.Set;
 
-import challenge.TestInterface;
+public class Test2 {
 
-public class Test2 implements TestInterface {
-
-	@Override
 	public Object run() {
 		Test2 test2 = new Test2();
 		return null;

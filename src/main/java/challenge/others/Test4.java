@@ -1,15 +1,12 @@
 package challenge.others;
 
-import challenge.TestInterface;
-
-public class Test4 implements TestInterface {
+public class Test4  {
 
 	public static void main(String[] args) {
 		Test4 test3 = new Test4();
 		test3.run();
 	}
 
-	@Override
 	public Object run() {
 		Test4 test3 = new Test4();
 

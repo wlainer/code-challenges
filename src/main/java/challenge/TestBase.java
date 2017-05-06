@@ -17,41 +17,34 @@ import java.util.stream.Collectors;
 import org.junit.Assert;
 import org.junit.Before;
 
-public class TestBase implements TestInterface {
+public class TestBase {
 
 	private ByteArrayOutputStream baos;
 	private PrintStream oldOut;
-
-	protected static String inputFile = "01";
 
 	@Before
 	public void setup() {
 		configureSystemOut();
 	}
 
-	@Override
-	public Object run() {
-		return "Hello";
-	}
-	
-	protected static Scanner getScanner() {
-		String testFile = getTestFile() + "_" + inputFile + "_in.txt";
+	protected Scanner getScanner() {
+		String testFile = getTestFile() + "_" + getIndexTestCase() + "_in.txt";
 		createIfNotExits(testFile);
 
 		return new Scanner(getTestFileInputStream(testFile));
 	}
 
-	protected static String getTestFile() {
+	protected String getTestFile() {
 		String canonicalName = Thread.currentThread().getStackTrace()[3].getClassName();
 		String filepath = "/" + canonicalName.replace('.', '/');
 		return filepath;
 	}
 
-	private static InputStream getTestFileInputStream(String file) {
+	private InputStream getTestFileInputStream(String file) {
 		return Thread.currentThread().getStackTrace()[1].getClass().getResourceAsStream(file);
 	}
 
-	private static void createIfNotExits(String testFile) {
+	private void createIfNotExits(String testFile) {
 		try {
 			File projectLocation = new File("");
 			String absolutePath = projectLocation.getAbsolutePath().replace('\\', '/') + "/src/main/resources" + testFile;
@@ -105,7 +98,7 @@ public class TestBase implements TestInterface {
 
 	protected void checkLines() {
 		try {
-			String testFile = getTestFile() + "_" + inputFile + "_out.txt";
+			String testFile = getTestFile() + "_" + getIndexTestCase() + "_out.txt";
 			createIfNotExits(testFile);
 
 			BufferedReader solution = new BufferedReader(new InputStreamReader(getTestFileInputStream(testFile)));
@@ -121,5 +114,9 @@ public class TestBase implements TestInterface {
 			throw new RuntimeException("Ops... Something went wrong.", e);
 		}
 
+	}
+	
+	protected String getIndexTestCase() {
+		return "01";
 	}
 }

@@ -1,8 +1,6 @@
-package challenge.others;import java.nio.Buffer;
+package challenge.others;
 
-import challenge.TestInterface;
-
-public class Test1 implements TestInterface {
+public class Test1  {
 
 	
 	
@@ -10,7 +8,6 @@ public class Test1 implements TestInterface {
 	private static final String divisibleBy5 = "Buzz";
 	private static final String divisibleBy7 = "Woof";
 
-	@Override
 	public Object run() {
 		Test1 test1 = new Test1();
 		test1.solution(24);

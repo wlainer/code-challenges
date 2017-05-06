@@ -9,16 +9,13 @@ import java.util.Queue;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import challenge.TestInterface;
-
-public class Test3 implements TestInterface {
+public class Test3 {
 
 	public static void main(String[] args) {
 		Test3 test3 = new Test3();
 		test3.run();
 	}
 
-	@Override
 	public Object run() {
 		Test3 test3 = new Test3();
 
