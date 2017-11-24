@@ -1,16 +1,11 @@
 package challenge.hackerearth.recursion;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-=======
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> partial
 
 import org.junit.Test;
 
@@ -19,13 +14,6 @@ import challenge.TestBase;
 public class Snake extends TestBase {
 
 	private static final String direction = "rdlu";
-<<<<<<< HEAD
-	private static Integer snakeSize = 3;
-	private static Integer boardSize = 4;
-
-	public void solution() {
-
-=======
 	private static Integer snakeSize = 7;
 	private static Integer boardSize = 10;
 
@@ -63,7 +51,6 @@ public class Snake extends TestBase {
 
 		}
 
->>>>>>> partial
 		List<String> a = new ArrayList();
 		a.add("r");
 		a.add("l");
@@ -76,25 +63,17 @@ public class Snake extends TestBase {
 		// System.out.println(string);
 		// }
 
-<<<<<<< HEAD
-		int[][] board = new int[boardSize][boardSize];
-		int superCount = 0;
-=======
 //		int[][] board = new int[size][size];
 		int[][] board = new int[boardSize][boardSize];
 		int superCount = 0;
 		Map<Integer, Integer> map = new HashMap();
->>>>>>> partial
 		outer: for (String string : generateCombinations) {
 			initializeBoard(board);
 			int row = 0;
 			int col = 0;
 			board[row][col] = 1;
 
-<<<<<<< HEAD
-=======
 			int sum = grid[row][col];
->>>>>>> partial
 			int cont = 0;
 			inner: for (char c : string.toCharArray()) {
 				switch (c) {
@@ -102,10 +81,7 @@ public class Snake extends TestBase {
 					col = col + 1;
 
 					if (col >= 0 && col < 4 && board[row][col] != 1) {
-<<<<<<< HEAD
-=======
 						sum += grid[row][col];
->>>>>>> partial
 						board[row][col] = 1;
 						cont++;
 					} else
@@ -115,10 +91,7 @@ public class Snake extends TestBase {
 					col = col - 1;
 
 					if (col >= 0 && col < 4 && board[row][col] != 1) {
-<<<<<<< HEAD
-=======
 						sum += grid[row][col];
->>>>>>> partial
 						board[row][col] = 1;
 						cont++;
 					} else
@@ -128,10 +101,7 @@ public class Snake extends TestBase {
 					row = row - 1;
 
 					if (row >= 0 && row < 4 && board[row][col] != 1) {
-<<<<<<< HEAD
-=======
 						sum += grid[row][col];
->>>>>>> partial
 						board[row][col] = 1;
 						cont++;
 					} else
@@ -141,10 +111,7 @@ public class Snake extends TestBase {
 					row = row + 1;
 
 					if (row >= 0 && row < 4 && board[row][col] != 1) {
-<<<<<<< HEAD
-=======
 						sum += grid[row][col];
->>>>>>> partial
 						board[row][col] = 1;
 						cont++;
 					} else
@@ -157,15 +124,12 @@ public class Snake extends TestBase {
 
 			}
 			if (cont == snakeSize - 1) {
-<<<<<<< HEAD
-=======
 				if (map.get(sum) == null) {
 					map.put(sum, 0);
 				} else {
 					map.put(sum, map.get(sum) + 1);
 				}
 				
->>>>>>> partial
 				superCount++;
 				System.out.println("-------------");
 				printBoard(board);
